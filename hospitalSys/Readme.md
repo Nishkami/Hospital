@@ -114,6 +114,7 @@ Json Sample:
 
 **To add patient data**
 **NOTE: Here {id} is dependent id**
+
     GET /patient/getDependentById/{id} 
     
 **To add patient data**
