@@ -103,26 +103,31 @@ Json Sample:
     PUT /patient/updatePatient/{id}
     
 **To delete patient data using patient id**
+
 **NOTE: If you delete any patient all dependents for that patient will also be deleted**
 
     DELETE /patient/deletePatient/{id}  
 
 **To add Dependent data**
+
 **NOTE: Here {id} is patient id**
 
     POST /patient/addDependent/{id}
 
 **To add patient data**
+
 **NOTE: Here {id} is dependent id**
 
     GET /patient/getDependentById/{id} 
     
 **To add patient data**
+
 **NOTE: Here {id} is dependent id**
 
     PUT /patient/updateDependent/{id} 
     
 **To add patient data**
+
 **NOTE: Here {id} is dependent id**
 
     DELETE /patient/deleteDependent/{id}
