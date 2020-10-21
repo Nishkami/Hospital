@@ -25,7 +25,7 @@ The application we will be building will need to be able to do these things:
 
 3. Mysql - 5.x.x
 
-## Steps to Setup
+## How to Run
 
 **1. Clone the application**
 
@@ -44,17 +44,18 @@ CREATE DATABASE `hospital` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb
 
 + change `spring.datasource.username` and `spring.datasource.password` as per your mysql installation
 
-**4. Build and run the app using maven**
+**4. You can build the project and run the tests by running**
 
 ```bash
-mvn clean install
+mvn clean package
 ```
-
-Alternatively, you can run the app without packaging it using -
+**5. Once successfully built, you can run the service**
 
 ```bash
 mvn spring-boot:run
 ```
+
+**6. Check the stdout or boot_example.log file to make sure no exceptions are thrown**
 
 The app will start running at <http://localhost:8080>.
 
@@ -62,23 +63,68 @@ The app will start running at <http://localhost:8080>.
 
 The app defines following CRUD APIs.
 
+Json Sample:
+```bash
+{
+  "id" : "",
+  "status" : "true",
+  "phoneNumber" : "1234567890",
+  "firstName" : "John",
+  "lastName": "Doe",
+  "createdAt" : "",
+  "dateOfBirth" : "01/01/99",
+  "updatedAt" : "",
+  "dependents" : [
+      {
+        "id" : "",
+        "dateOfBirth": "02/02/99",
+        "firstName": "Jane",
+        "lastName": "Doe"
+      }
+  ]
+}
+
+```
+
+**To get all patient data**
+
     GET /patient/getAllData
     
+**To add patient data** 
+
     POST /patient/addPatient
     
+**To get patient data using patient id**
+
     GET /patient/getPatientById/{id}
     
+**To update patient data using patient id**
+
     PUT /patient/updatePatient/{id}
     
-    DELETE /patient/deletePatient/{id} //will delete dep as well, 
+**To delete patient data using patient id**
+**NOTE: If you delete any patient all dependents for that patient will also be deleted**
 
-    POST /patient/addDependent/{id} //patient id
+    DELETE /patient/deletePatient/{id}  
+
+**To add Dependent data**
+**NOTE: Here {id} is patient id**
+
+    POST /patient/addDependent/{id}
+
+**To add patient data**
+**NOTE: Here {id} is dependent id**
+    GET /patient/getDependentById/{id} 
     
-    GET /patient/getDependentById/{id} //depe
+**To add patient data**
+**NOTE: Here {id} is dependent id**
+
+    PUT /patient/updateDependent/{id} 
     
-    PUT /patient/updateDependent/{id} // depe
-    
-    DELETE /patient/deleteDependent/{id} //depe
+**To add patient data**
+**NOTE: Here {id} is dependent id**
+
+    DELETE /patient/deleteDependent/{id}
 
 You can test them using postman or any other rest client.
 
